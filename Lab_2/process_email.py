@@ -67,7 +67,8 @@ def process_email(email):
         #
         # a = [1, 2, 3]
         # a.append(4)   # => [1, 2, 3, 4]
-        word_indices.append(np.where(vocabList == str)[0])
+        ans = np.where(vocabList == str)[0]
+        word_indices.append(ans)
 
     return word_indices
 

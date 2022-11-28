@@ -73,7 +73,10 @@ for k in range(min_k, max_k + 1):
         min_err = np.append(min_err, np.min(errors))
     error_by_k = np.append(error_by_k, np.min(min_err))
 
-plt.plot(np.arange(min_k, max_k + 1), error_by_k, 'bo-')
+x_show = np.arange(min_k, max_k + 1)
+plt.plot(x_show, error_by_k, 'bo-')
+print("x_show: \n", [x_show for i in range(len(x_show))])
+print("y_show: \n", [error_by_k for i in range(len(error_by_k))])
 plt.title('Error by k')
 plt.xlabel('k (number of clusters)')
 plt.ylabel('error level')

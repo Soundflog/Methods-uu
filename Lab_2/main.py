@@ -2,10 +2,9 @@ from collections import OrderedDict
 
 import numpy as np
 import scipy.io as sp
+from sklearn.svm import SVC
 
 import process_email as pe
-# from lab1.lib import svm
-from sklearn.svm import SVC
 
 
 def zan_1():
@@ -58,7 +57,8 @@ def zan_5(model):
 
 def zan_6(model):
     print("zadan 6")
-    t = sorted(list(enumerate(model.coef_[0])), key=lambda e: e[1], reverse=True)
+    t = sorted(list(enumerate(model.coef_[0])),
+               key=lambda e: e[1], reverse=True)
     d = OrderedDict(t)
     idx = list(d.keys())
     weight = list(d.values())
