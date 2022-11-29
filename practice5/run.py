@@ -75,10 +75,13 @@ for k in range(min_k, max_k + 1):
 
 x_show = np.arange(min_k, max_k + 1)
 plt.plot(x_show, error_by_k, 'bo-')
-print("x_show: \n", [x_show for i in range(len(x_show))])
-print("y_show: \n", [error_by_k for i in range(len(error_by_k))])
+
+# print("x_show: \n", [x_show for i in range(len(x_show))])
+# print("y_show: \n", [error_by_k for i in range(len(error_by_k))])
+
 plt.title('Error by k')
 plt.xlabel('k (number of clusters)')
 plt.ylabel('error level')
+plt.annotate(xy=(x_show[2], error_by_k[2]), text=' "Локоть"')
 plt.grid()
 plt.show()

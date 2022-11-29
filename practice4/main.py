@@ -5,22 +5,32 @@ import matplotlib.pyplot as plt
 def print_plots(film1, film2):
     x = []
     y = []
+    names = []
+    fig, ax = plt.subplots()
     for key, value in critics.items():
         for key1, value1 in value.items():
             if key1 in film1:
                 x.append(value1)
+                names.append(key)
             elif key1 in film2:
                 y.append(value1)
+                # names.append(key)
 
     if len(x) > len(y):
         x = x[:len(y)]
     else:
         y = y[:len(x)]
 
-    fig, ax = plt.subplots()
     ax.scatter(x, y)
+
+    print("x: \n", x)
+    print("y: \n", y)
+    print("names: \n", set(names))
+    for i in range(len(x)):
+        plt.annotate(names[i], (x[i], y[i]))
     ax.set_xlabel(f'оценки за {film1}')
     ax.set_ylabel(f'оценки за {film2}')
+    plt.grid()
     plt.show()
 
 
@@ -40,4 +50,4 @@ if __name__ == '__main__':
           sim_pearson(critics, 'Кот Матроскин', 'Почтальон Печкин'))
 
     print("\tЗадание 4 (top_matches):")
-    top_matches(critics, 'Кот Матроскин')
+    top_matches(critics, 'Телёнок Гаврюша')

@@ -164,4 +164,5 @@ def plot_best_worst_users(critics, critic_name, second_name):
     a = np.polyfit(x, y, 1)
     b = np.poly1d(a)
     plt.plot(x, b(x), 'r')
+    plt.grid()
     plt.show()
