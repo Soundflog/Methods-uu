@@ -50,4 +50,4 @@ if __name__ == '__main__':
           sim_pearson(critics, 'Кот Матроскин', 'Почтальон Печкин'))
 
     print("\tЗадание 4 (top_matches):")
-    top_matches(critics, 'Телёнок Гаврюша')
+    top_matches(critics, 'Галчонок')

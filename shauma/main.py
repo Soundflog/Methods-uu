@@ -1,45 +1,53 @@
-import random as rnd
-
-# print("Первое задание:")
-# m1 = rnd.sample(range(0, 20), 5)
-# m2 = rnd.sample(range(0, 20), 5)
-# print(m1)
-# print(m2)
-# m3 = []
-# for i in range(len(m1)):
-#     m3.append(abs(m1[i] - m2[i]))
-# print(m3)
-#
-# print("Четвёртое задание")
-# mas_count = int(input("Введите кол-во массивов: "))
-# mas_elem = int(input("Введите кол-во элементов массива: "))
-# arrayA = []
-# for i in range(mas_count):
-#     arrayB = []
-#     for i in range(mas_elem):
-#         arrayB.append(rnd.randint(0, 100))
-#     print(str(arrayB) + " - его сумма=" + str(sum(arrayB)))
-#     if sum(arrayB) > sum(arrayA):
-#         arrayA = arrayB
-# print("Сумма элементов массива наибольшая:")
-# print(arrayA)
-
-print("Пятое задание")
+from recommendations import critics, sim_distance, sim_pearson, top_matches
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import numpy as np
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
 
-ax.scatter(0, 0, 0)
-ax.scatter(3, 3, 0)
-plt.show()
+def print_plots(film1, film2):
+    x = []
+    y = []
+    names = []
+    fig, ax = plt.subplots()
+    for key, value in critics.items():
+        for key1, value1 in value.items():
+            if key1 in film1:
+                x.append(value1)
+                names.append(key)
+            elif key1 in film2:
+                y.append(value1)
+                # names.append(key)
 
-point_1 = np.array((0, 0, 0))
-point_2 = np.array((3, 3, 0))
-square = np.square(point_1 - point_2)
-sum_square = np.sum(square)
-distance = np.sqrt(sum_square)
-print(distance)
+    if len(x) > len(y):
+        x = x[:len(y)]
+    else:
+        y = y[:len(x)]
 
+    ax.scatter(x, y)
+
+    # print("x: \n", x)
+    # print("y: \n", y)
+    # print("names: \n", set(names))
+    for i in range(len(x)):
+        plt.annotate(names[i], (x[i], y[i]))
+    ax.set_xlabel(f'оценки за {film1}')
+    ax.set_ylabel(f'оценки за {film2}')
+    plt.grid()
+    plt.show()
+
+
+if __name__ == '__main__':
+    print_plots('Каникулы в Простоквашино', 'Зима в Простоквашино')
+
+    print("\tЗадание 2 (sim_distance):")
+    print("Телёнок Гаврюша и Галчонок: ",
+          sim_distance(critics, 'Телёнок Гаврюша', 'Галчонок'))
+    print("Кот Матроскин и Почтальон Печкин: ",
+          sim_distance(critics, 'Кот Матроскин', 'Почтальон Печкин'))
+
+    print("\tЗадание 3 (sim_pearson):")
+    print("Телёнок Гаврюша и Галчонок: ",
+          sim_pearson(critics, 'Телёнок Гаврюша', 'Галчонок'))
+    print("Кот Матроскин и Почтальон Печкин: ",
+          sim_pearson(critics, 'Кот Матроскин', 'Почтальон Печкин'))
+
+    print("\tЗадание 4 (top_matches):")
+    top_matches(critics, 'Кот Матроскин')
