@@ -74,6 +74,7 @@ def decision_tree(X, Y, scale, level=0):
             # gain.append(info - info_s)
             #
             info_s = 0
+            # np.bincount - возвращает количество вхождений значений в массиве
             rr = np.bincount(np.array(X[:, i], dtype=np.int64))
             for j in np.unique(np.array(X[:, i], dtype=np.int64)):
                 info_s += (rr[j] / m) * Info(np.array(Y)[X[:, i] == j])
@@ -81,7 +82,7 @@ def decision_tree(X, Y, scale, level=0):
         else:  # непрерывный признак
             # сортируем столбец по возрастанию
             val = np.sort(X[:, i])
-
+            # zeros() возвращает новый массив указанной формы и типа, заполненный нулями
             local_gain = np.zeros(m - 1)
 
             # количество порогов на 1 меньше числа примеров

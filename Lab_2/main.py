@@ -1,9 +1,7 @@
 from collections import OrderedDict
-
 import numpy as np
 import scipy.io as sp
 from sklearn.svm import SVC
-
 import process_email as pe
 
 
@@ -25,6 +23,7 @@ def zan_2(email):
 def zan_3(arr):
     print("zan3")
     features = pe.email_features(arr)
+    print("Длина вектора признаков: ", len(features))
     print('Кол-во ненулевых результатов: ', sum(features > 0))
 
 

@@ -38,13 +38,13 @@ else:
 # TODO: после того, как Вы построили дерево решений и реализовали на его
 # основе функцию classify, раскомментируйте код ниже и проверьте себя,
 # подходите ли Вы на роль ассистентки профессора Буковски :)
-# print('Test yourself!')
-# iq = int(input('iq: '))
-# articles = int(input('articles: '))
-# obr = int(input('obr: '))
-# ratio = float(input('ratio: '))
-# 
-# if clf.classify(np.array([iq, articles, obr, ratio])) == FIT:
-#     print('You are passed!')
-# else:
-#     print('You are not passed, sorry...')
+print('Test yourself!\nВведите ваши данные')
+iq = int(input('IQ: '))
+articles = int(input('Кол-во научных публикаций (articles): '))
+obr = int(input('Высшее образование 1-да 0-нет (obr): '))
+ratio = float(input('Соотношение рост/вес (ratio): '))
+
+if clf.classify(np.array([iq, articles, obr, ratio])) == FIT:
+    print('You are passed!')
+else:
+    print('You are not passed, sorry...')
