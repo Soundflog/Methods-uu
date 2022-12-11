@@ -39,7 +39,13 @@ def support(X, candidate):
     # TODO: реализуйте вычисление поддержки для кандидата candidate.
     # воспользуйтесь функциями mean и all из состава библиотеки numpy
     # return ...
-    return
+    sup = 0
+    can_1 = candidate[0]
+    can_2 = candidate[1]
+    for i in range(6):
+        if X[i][can_1] == 1 & X[i][can_2] == 1:
+            sup += 1
+    return round(sup / 6, 2)
 
 # функция поиска ассоциативных правил с помощью алгоритма Apriori.
 # X представляет собой матрицу, в которой каждая строка описывает
@@ -69,6 +75,7 @@ def apriori(X, minimal_support):
     # сохраните результат в вектор-строку support_, длина которого равна 4
     # (количество столбцов в X = количество наблюдаемых событий)
     # support_ = ...   # поддержка каждого 1-элементного набора
+    support_ = np.mean(X, axis=0)
 
     n = X.shape[1]                  # количество наблюдаемых событий
 
@@ -95,7 +102,7 @@ def apriori(X, minimal_support):
                 # добавьте i-го кандидата из multi_element_candidates как новую строку в матрицу accepted_candidates
                 # используйте функцию numpy.reshape для формирования матрицы accepted_candidates нужной размерности
                 # accepted_candidates = np.append(...).reshape(...)
-
+                accepted_candidates = np.append(accepted_candidates, candidate).reshape(-1, k)
                 # вносим кандидата, прошедшего порог, в набор ассоциативных правил
                 sub = np.zeros((1, n))
                 sub[:, candidate] = 1

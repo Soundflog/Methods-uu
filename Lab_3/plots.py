@@ -1,7 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-import dataFunc as df
-
+from main import loadData
 
 # Функции построения графиков
 def plotErrors(errors: np.ndarray):
@@ -14,7 +13,7 @@ def plotErrors(errors: np.ndarray):
 
 
 def plotTask2():
-    dataX, datay = df.loadData('ex1data1.txt')
+    dataX, datay = loadData('ex1data1.txt')
     plt.plot(dataX, datay, 'b.')
     plt.title('Зависимость прибыльности от численности')
     plt.xlabel('Численность')
