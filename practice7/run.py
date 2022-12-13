@@ -32,7 +32,7 @@ rules = apriori(X, sup)
 
 # отображение результатов
 for rule in rules:
-    for i, item in enumerate(rule[0: -1]):
+    for i, item in enumerate(rule):
         if item == 1:
             print('%s\t' % actions[i], end='')
-    print('-> %f' % rule[-1])
+    print(' ---> %f' % rule[-1])

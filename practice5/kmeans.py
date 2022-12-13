@@ -12,6 +12,7 @@ def k_means(k, X):
 
     # генерируем k центров со случайными координатами
     idx = np.arange(0, m)
+    # перемешивание случайным образом
     shuffle(idx)
     centers = X[idx[0: k], :]
 
@@ -34,6 +35,7 @@ def k_means(k, X):
     #   array([1, 2, 3])
     # errors = ...
     # errors = np.append(e)
+    # Задание 4
     errors = np.append(errors, e)
 
     # цикл до тех пор, пока центры не стабилизируются
@@ -89,6 +91,7 @@ def k_means(k, X):
 
     # TODO: модифицировать оператор return так, чтобы
     # функция возвращала переменные centers, all_centers и errors
+    # Задание 3
     return centers, all_centers, errors
 
 

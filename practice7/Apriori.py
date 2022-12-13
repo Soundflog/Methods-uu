@@ -9,7 +9,6 @@ import numpy as np
 # проверить поддержку для сочетания из первого, второго и четвертого событий.
 # Fk - новые кандидаты для проверки с размером на 1 больше
 def generate_candidates(previous_candidates, unique_elements):
-
     if len(previous_candidates) == 0:
         return []
 
@@ -47,6 +46,7 @@ def support(X, candidate):
             sup += 1
     return round(sup / 6, 2)
 
+
 # функция поиска ассоциативных правил с помощью алгоритма Apriori.
 # X представляет собой матрицу, в которой каждая строка описывает
 # отдельную транзакцию. Столбцы означают события, произошедшие в
@@ -77,7 +77,7 @@ def apriori(X, minimal_support):
     # support_ = ...   # поддержка каждого 1-элементного набора
     support_ = np.mean(X, axis=0)
 
-    n = X.shape[1]                  # количество наблюдаемых событий
+    n = X.shape[1]  # количество наблюдаемых событий
 
     # часто встречающиеся 1-элементные наборы
     # one_element_candidates будет содержать номера событий, которые
@@ -88,14 +88,14 @@ def apriori(X, minimal_support):
     accepted_candidates = one_element_candidates
 
     # необходимо рассмотреть все возможные наборы от двухэлементных до n-элементных
-    for k in range(2, n+1):
-        multi_element_candidates = generate_candidates(accepted_candidates, unique_elements)    # генерация кандидатов
-        accepted_candidates = np.array([], dtype=int)     # в accepted_candidates будут сохранены только кандидаты, поддержка для которых превысила порог
+    for k in range(2, n + 1):
+        multi_element_candidates = generate_candidates(accepted_candidates, unique_elements)  # генерация кандидатов
+        accepted_candidates = np.array([],
+                                       dtype=int)  # в accepted_candidates будут сохранены только кандидаты, поддержка для которых превысила порог
 
         # вычисление поддержки для каждого кандидата. Лишние кандидаты отбрасываются
         for candidate in multi_element_candidates:
             if support(X, candidate) > minimal_support:
-
                 # TODO: если i-й кандидат из multi_element_candidates прошел проверку, то есть поддержка для него
                 # оказалась выше минимальной поддержки, значит необходимо внести его в матрицу
                 # accepted_candidates для того, чтобы на его основе генерировать новых кандидатов с размером на 1 больше
