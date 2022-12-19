@@ -2,6 +2,7 @@ import numpy as np
 from kmeans import *
 import matplotlib.pyplot as plt
 
+
 k = 4
 # TODO: заполнить значениями матрицу X, используя данные,
 # собранные ассистентом профессора. Число строк в матрице
@@ -74,9 +75,6 @@ for k in range(min_k, max_k + 1):
 
 x_show = np.arange(min_k, max_k + 1)
 plt.plot(x_show, error_by_k, 'bo-')
-
-# print("x_show: \n", [x_show for i in range(len(x_show))])
-# print("y_show: \n", [error_by_k for i in range(len(error_by_k))])
 
 plt.title('Error by k')
 plt.xlabel('k (number of clusters)')

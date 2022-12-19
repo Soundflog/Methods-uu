@@ -40,12 +40,16 @@ def support(X, candidate):
     # воспользуйтесь функциями mean и all из состава библиотеки numpy
     # return ...
     sup = 0
-    can_1 = candidate[0]
-    can_2 = candidate[1]
-    for i in range(6):
-        if X[i][can_1] == 1 & X[i][can_2] == 1:
+    for i in range(len(X)):
+        condition = True
+        # Условие, что в строке есть все элементы кандидата
+        for j in range(len(candidate)):
+            if X[i][candidate[j]] != 1:
+                condition = False
+
+        if condition:
             sup += 1
-    return round(sup / 6, 2)
+    return round(sup / len(X), 2)
 
 # функция поиска ассоциативных правил с помощью алгоритма Apriori.
 # X представляет собой матрицу, в которой каждая строка описывает
