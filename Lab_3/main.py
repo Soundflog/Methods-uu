@@ -1,4 +1,4 @@
-from matplotlib import rc
+from matplotlib import rc, pyplot as plt
 import plots as myplots
 import numpy as np
 
@@ -125,9 +125,44 @@ def twoRegress():
                           dtype=np.float), t2, norm))))
 
 
+def kursach(n, T):
+    x = 1
+    y_n = [0, 0, 0]
+    x_n = [0, T * 1, T * 2]
+    n = int(n / T)
+    for i in range(3, n):
+        if i < 3:
+            x = 0
+        else:
+            x = 1
+        # (-(40 * T - 15) * y_n[i - 1] - \
+        #                     (15 - 80 * T + 35 * pow(T, 2)) * y_n[i - 2] - \
+        #                     (32 * pow(T, 3) - 35 * pow(T, 2) + 40 * T - 5) * y_n[i - 3] + \
+        #                     (32 * pow(T, 3)) * x) / 5
+        y_n.append((-(439 * T - 150) * y_n[i - 1] - \
+                    (150 - 878 * T + 700 * pow(T, 2)) * y_n[i - 2] - \
+                    (1300 * pow(T, 3) - 700 * pow(T, 2) + 439*T - 50) * y_n[i - 3] + \
+                    (1300 * pow(T, 3)) * x) / 50)
+        x_n.append(T * i)
+
+    return x_n, y_n
+
+
+def plotKursach(X, y):
+    plt.plot(x, y)
+    plt.xlabel('T')
+    plt.ylabel('Y')
+    plt.grid()
+    plt.show()
+
+
 if __name__ == '__main__':
     font = {'family': 'Verdana', 'weight': 'normal'}
     rc('font', **font)
     # Вызов функций
-    oneRegress()
-    twoRegress()
+    # oneRegress()
+    # twoRegress()
+    x, y_n = kursach(10, 0.01)
+    print("--y_n--\n", y_n)
+    print("------X-------\n", x)
+    plotKursach(x, y_n)
